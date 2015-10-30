@@ -16,7 +16,7 @@
 
 \section{Executive Summary}
 
-This project will focus on discussing and exploring the effectiveness of various language features when applied to the clustering books of based on reading comprehension level.
+This project will focus on discussing and exploring the effectiveness of various language features when applied to clustering books based on reading comprehension level.
 It will utilize previous works in the area, which although may not be perfectly applicable, have a somewhat obvious connection to the objective.
 To test the features, we will attempt to generate 3 clusters from plain-text books freely available online; child-friendly, young adult, and adult books.
 
@@ -48,6 +48,55 @@ The project will utilize various open source toolkits, including the NLTK, which
 This will allow more time to focus on selecting effective features, and less time remaking the wheel.
 A preliminary list of possible features used in previous work is available in table \ref{table:features1}, and a list of newly generated features has been compiled into table \ref{table:features2}.
 Some or all of these features may be implemented to test their effectiveness at clustering the data.
+It should be noted that many of these features were borrowed from the previous works done by Feng \cite{feng2009cognitively}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Average number of words per sentence \\ \hline
+			Average number of syllables per word \\ \hline
+			Percentage of words with more than 3 syllables \\ \hline
+			Average number of noun phrases per sentence \\ \hline
+			Average number of common and proper nouns per sentence \\ \hline
+			Average number of verb phrases per sentence \\ \hline
+			Average number of adjectives per sentence \\  \hline
+			Average number of conjunctions per sentence \\ \hline
+			Average number of prepositional phrases per sentence \\ \hline
+			Total number of noun phrases in document \\ \hline
+			Total number of common and proper nouns in document \\ \hline
+			Total number of verb phrases in document \\ \hline
+			Total number of adjectives in document \\ \hline
+			Total number of conjunctions in document \\ \hline
+			Total number of prepositional phrases in document \\ \hline
+			Number of entity mentions in document \\ \hline
+			Number of unique entities in document \\ \hline
+			Average number of entity mentions per sentence \\ \hline
+			Average number of unique entities per sentence \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{List of possible features from previous work\cite{}}
+	\label{table:features1}
+\end{table}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Average word length in document \\ \hline
+			Total number of unique words in document\\ \hline
+			Ratio of unique words to total number of words in document \\ \hline
+			Ratio of proper nouns to common nouns in document \\ \hline
+			Length of document \\ \hline
+			Average number of proper nouns per sentence \\ \hline
+			Total number of proper nouns in document \\ \hline
+			Total number of passive sentences in document \\ \hline
+			Average number of prepositional phrases per sentence \\ \hline
+			Total number of prepositional phrases in document \\ \hline
+			
+		\end{tabular}
+	\end{center}
+	\caption{List of possible new features}
+	\label{table:features2}
+\end{table}
 
 \section{Deliverables}
 
@@ -72,58 +121,12 @@ Most books in the project have multiple translations, which contributes to the l
 To make this project more achievable, we will limit ourselves to the fiction category; which has it's own subcategory, children's fiction.
 
 Lastly, we need a toolkit which provides many resources to help calculate the clusters given our feature set.
-For this purpose, we will use the Python Natural Language Toolkit (NLTK), which is a free and open source library intended for these types of application \cite{ref:evolution_of_jun}.
+For this purpose, we will use the Python Natural Language Toolkit (NLTK), which is a free and open source library intended for these types of application.
+
+
+\printbibliography
 
 \includepdf[pages=1]{../ProjectAllRead.pdf}
-
-\begin{table}
-	\begin{center}
-		\begin{tabular}{| c |} \hline
-			Average number of words per sentence \\ \hline
-			Average number of syllables per word \\ \hline
-			Percentage of words with more than 3 syllables \\ \hline
-			Average number of noun phrases per sentence \\ \hline
-			Average number of common and proper nouns per sentence \\ \hline
-			Average number of verb phrases per sentence \\ \hline
-			Average number of adjectives per sentence \\  \hline
-			Average number of conjunctions per sentence \\ \hline
-			Average number of prepositional phrases per sentence \\ \hline
-			Total number of noun phrases in document \\ \hline
-			Total number of common and proper nouns in document \\ \hline
-			Total number of verb phrases in document \\ \hline
-			Total number of adjectives in document \\ \hline
-			Total number of conjunctions in document \\ \hline
-			Total number of prepositional phrases in document \\ \hline
-			Number of entity mentions in document \\ \hline
-			Number of unique entities in document \\ \hline
-			Average number of entity mentions per sentence \\ \hline
-			Average number of unique entities per sentence \\ \hline
-		\end{tabular}
-	\end{center}
-\caption{List of possible features from previous work\cite{}}
-\label{table:features1}
-\end{table}
-
-\begin{table}
-	\begin{center}
-		\begin{tabular}{| c |} \hline
-			Average word length in document \\ \hline
-			Total number of unique words in document\\ \hline
-			Ratio of unique words to total number of words in document \\ \hline
-			Ratio of proper nouns to common nouns in document \\ \hline
-			Length of document \\ \hline
-			Average number of proper nouns per sentence \\ \hline
-			Total number of proper nouns in document \\ \hline
-			Total number of passive sentences in document \\ \hline
-			Average number of prepositional phrases per sentence \\ \hline
-			Total number of prepositional phrases in document \\ \hline
-			
-		\end{tabular}
-	\end{center}
-\caption{List of possible new features}
-\label{table:features2}
-\end{table}
-
 
 \begin{figure}
 	\label{flowchart}
@@ -138,7 +141,5 @@ For this purpose, we will use the Python Natural Language Toolkit (NLTK), which 
 	\centering
 	\includegraphics{../StackDiagram.jpg}
 \end{figure}
-
-\printbibliography
 
 \end{document}
