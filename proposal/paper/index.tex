@@ -2,7 +2,7 @@
 
 %opening
 \title{Automated Reading Comprehension Clustering}
-\author{Charles Hathaway}
+\author{Charles Hathaway, David Hedin}
 
 \usepackage[final]{pdfpages}
 \usepackage{graphicx}
@@ -16,7 +16,7 @@
 
 \section{Executive Summary}
 
-This project will focus on discussing and exploring the effectiveness of various language features when applied to clustering books based on reading comprehension level.
+This project will focus on discussing and exploring the effectiveness of various language features when applied to the clustering books of based on reading comprehension level.
 It will utilize previous works in the area, which although may not be perfectly applicable, have a somewhat obvious connection to the objective.
 To test the features, we will attempt to generate 3 clusters from plain-text books freely available online; child-friendly, young adult, and adult books.
 
@@ -45,7 +45,9 @@ The design is further described in the box chart, displayed in figure \ref{boxch
 
 In order to accelerate development, the coding will primarily be done in Python.
 The project will utilize various open source toolkits, including the NLTK, which provides a maximum entropy clustering framework.
-This will allow me to spend more time focusing on selecting effective features, and less time remaking the wheel.
+This will allow more time to focus on selecting effective features, and less time remaking the wheel.
+A preliminary list of possible features used in previous work is available in table \ref{table:features1}, and a list of newly generated features has been compiled into table \ref{table:features2}.
+Some or all of these features may be implemented to test their effectiveness at clustering the data.
 
 \section{Deliverables}
 
@@ -60,8 +62,8 @@ The deliverables of this project will have 3 key parts:
 
 The most important resources for this project is the books themselves.
 To that end, Project Gutenberg will be mined to provide both the training and testing data sets.
-They have an extensive list of childrens books, which we will use as the basis for the first clustering.
-Ideally, we will end up with a clustering such that childrens book all fall below the average reading difficulty, at average - 1 standard deviation.
+They have an extensive list of children's books, which we will use as the basis for the first clustering.
+Ideally, we will end up with a clustering such that children's book all fall below the average reading difficulty, at average - 1 standard deviation.
 For the second clustering, we will determine it by picking a range in between the children books and the highest threshold; ideally in the range of average $\pm$ 1 standard deviation.
 The last section, adult/advanced readers, will consist of books deemed more complicated than the average + 1 standard deviation.
 
@@ -74,6 +76,53 @@ For this purpose, we will use the Python Natural Language Toolkit (NLTK), which 
 
 \includepdf[pages=1]{../ProjectAllRead.pdf}
 
+\begin{table}
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Average number of words per sentence \\ \hline
+			Average number of syllables per word \\ \hline
+			Percentage of words with more than 3 syllables \\ \hline
+			Average number of noun phrases per sentence \\ \hline
+			Average number of common and proper nouns per sentence \\ \hline
+			Average number of verb phrases per sentence \\ \hline
+			Average number of adjectives per sentence \\  \hline
+			Average number of conjunctions per sentence \\ \hline
+			Average number of prepositional phrases per sentence \\ \hline
+			Total number of noun phrases in document \\ \hline
+			Total number of common and proper nouns in document \\ \hline
+			Total number of verb phrases in document \\ \hline
+			Total number of adjectives in document \\ \hline
+			Total number of conjunctions in document \\ \hline
+			Total number of prepositional phrases in document \\ \hline
+			Number of entity mentions in document \\ \hline
+			Number of unique entities in document \\ \hline
+			Average number of entity mentions per sentence \\ \hline
+			Average number of unique entities per sentence \\ \hline
+		\end{tabular}
+	\end{center}
+\caption{List of possible features from previous work\cite{}}
+\label{table:features1}
+\end{table}
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Average word length in document \\ \hline
+			Total number of unique words in document\\ \hline
+			Ratio of unique words to total number of words in document \\ \hline
+			Ratio of proper nouns to common nouns in document \\ \hline
+			Length of document \\ \hline
+			Average number of proper nouns per sentence \\ \hline
+			Total number of proper nouns in document \\ \hline
+			Total number of passive sentences in document \\ \hline
+			Average number of prepositional phrases per sentence \\ \hline
+			Total number of prepositional phrases in document \\ \hline
+			
+		\end{tabular}
+	\end{center}
+\caption{List of possible new features}
+\label{table:features2}
+\end{table}
 
 
 \begin{figure}
