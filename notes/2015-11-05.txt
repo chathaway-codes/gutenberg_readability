@@ -1,0 +1,7 @@
+This week:
+ David started work on sanitizing data
+
+Next week:
+ David done with santizing
+ Charles done downloading books
+ Discussion about initial pipeline design, including references to NLTK
