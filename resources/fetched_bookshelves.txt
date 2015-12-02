@@ -1,0 +1,19 @@
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py file:///home/charles/Programming/gutenberg_readability/resources/Children\'s_Fiction_\(Bookshelf\) > ../../resources/childrens_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Crime_Fiction_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Adventure_(Bookshelf) >> ../../resources/adult_fiction_books.txt
+bash: syntax error near unexpected token `('
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Adventure_\(Bookshelf\) >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Detective_Fiction_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Erotic_Fiction_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Fantasy_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Gothic_Fiction_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Historical_Fiction_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Horror_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Humor_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Movie_Books_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Mystery_Fiction_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Precursors_of_Science_Fiction_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/School_Stories_%28Bookshelf%29 >> ../../resources/childrens_fiction_books.txt 
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Science_Fiction_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+charles@Bender:~/Programming/gutenberg_readability/src/retrieval$ python get_bookshelf.py http://www.gutenberg.org/wiki/Western_%28Bookshelf%29 >> ../../resources/adult_fiction_books.txt
+
