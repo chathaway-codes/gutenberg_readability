@@ -5,3 +5,4 @@ if [ ! -d "./python/" ]; then
 fi
 
 . ./python/bin/activate
+export PYTHONPATH=$PYTHONPATH:`pwd`/src/
