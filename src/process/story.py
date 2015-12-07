@@ -5,6 +5,7 @@ into various tokens that will be used multiple times
 import nltk.data
 import unittest
 from retrieval.get_book_by_id import main as get_book_by_id
+from stat_parser import Parser
 
 class Story:
     def __init__(self, book_id, plain_text=None):
@@ -13,10 +14,13 @@ class Story:
             self.plain_text = get_book_by_id(book_id)
         else:
             self.plain_text = plain_text
+        # Remove whitespace
+        self.plain_text = self.plain_text.replace("\r\n", " ")
         # Calculate these as needed
         self._sentences = None
         self._words = None
         self._pos = None
+        self._tagged_sentences = None
 
     @property
     def sentences(self):
@@ -36,7 +40,7 @@ class Story:
         if self._pos == None:
             self._pos = nltk.pos_tag(self.words)
         return self._pos
-
+    
 class StoryTests(unittest.TestCase):
     def setUp(self):
         self.book = Story(2701)

@@ -2,6 +2,10 @@ if [ ! -d "./python/" ]; then
 	virtualenv python/
 	. ./python/bin/activate
 	pip install -r ./libraries.txt
+	wget http://maltparser.org/dist/maltparser-1.8.1.tar.gz
+	tar -xzf maltparser-1.8.1.tar.gz
+	rm maltparser-1.8.1.tar.gz
+	wget http://www.maltparser.org/mco/english_parser/engmalt.linear-1.7.mco
 fi
 
 . ./python/bin/activate

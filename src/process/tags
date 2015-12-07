@@ -1,0 +1,73 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+AverageNounPhrasesTests	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^class AverageNounPhrasesTests(unittest.TestCase):$/;"	c	language:Python
+AverageNumberOfAdjectivesTest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^class AverageNumberOfAdjectivesTest(unittest.TestCase):$/;"	c	language:Python
+AverageNumberOfAdjectivesTest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_common_proper_nouns.py	/^class AverageNumberOfAdjectivesTest(unittest.TestCase):$/;"	c	language:Python
+AverageNumberOfAdjectivesTest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_proper_nouns.py	/^class AverageNumberOfAdjectivesTest(unittest.TestCase):$/;"	c	language:Python
+AverageNumberOfAdjectivesTest	/home/charles/Programming/gutenberg_readability/src/process/count_number_of_occurances.py	/^class AverageNumberOfAdjectivesTest(unittest.TestCase):$/;"	c	language:Python
+AverageNumberOfConjuctionsTest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_conjunctions.py	/^class AverageNumberOfConjuctionsTest(unittest.TestCase):$/;"	c	language:Python
+CountTotalsTest	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^class CountTotalsTest(unittest.TestCase):$/;"	c	language:Python
+data	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^import nltk.data$/;"	i	language:Python
+get_book_by_id	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^from retrieval.get_book_by_id import main as get_book_by_id$/;"	i	language:Python
+main	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^def main(book):$/;"	f	language:Python
+main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^main = make_main(['JJ', 'JJR', 'JJS'])$/;"	v	language:Python
+main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_common_proper_nouns.py	/^main = make_main(['NN', 'NNS', 'NNP', 'NNPS'])$/;"	v	language:Python
+main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_conjunctions.py	/^main = make_main(['CC', 'IN'])$/;"	v	language:Python
+main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_proper_nouns.py	/^main = make_main(['NNP', 'NNPS'])$/;"	v	language:Python
+main	/home/charles/Programming/gutenberg_readability/src/process/count_number_of_occurances.py	/^    def main(book):$/;"	f	language:Python	function:make_main
+main	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^    def main(book):$/;"	f	language:Python	function:make_total_count
+make_main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^from process.count_number_of_occurances import make_main$/;"	i	language:Python
+make_main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_common_proper_nouns.py	/^from process.count_number_of_occurances import make_main$/;"	i	language:Python
+make_main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_conjunctions.py	/^from process.count_number_of_occurances import make_main$/;"	i	language:Python
+make_main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_proper_nouns.py	/^from process.count_number_of_occurances import make_main$/;"	i	language:Python
+make_main	/home/charles/Programming/gutenberg_readability/src/process/count_number_of_occurances.py	/^def make_main(list_of_phrases):$/;"	f	language:Python
+make_total_count	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^def make_total_count(types):$/;"	f	language:Python
+nltk	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^import nltk$/;"	i	language:Python
+nltk	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^import nltk$/;"	i	language:Python
+nltk	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^import nltk.data$/;"	i	language:Python
+NPChunker	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^NPChunker = nltk.RegexpParser(patterns)$/;"	v	language:Python
+Parser	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^from stat_parser import Parser$/;"	i	language:Python
+pos_words	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def pos_words(self):$/;"	m	language:Python	class:Story
+re	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^import re$/;"	i	language:Python
+sentences	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def sentences(self):$/;"	m	language:Python	class:Story
+setUp	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^    def setUp(self):$/;"	m	language:Python	class:AverageNounPhrasesTests
+setUp	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^    def setUp(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
+setUp	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_common_proper_nouns.py	/^    def setUp(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
+setUp	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_conjunctions.py	/^    def setUp(self):$/;"	m	language:Python	class:AverageNumberOfConjuctionsTest
+setUp	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_proper_nouns.py	/^    def setUp(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
+setUp	/home/charles/Programming/gutenberg_readability/src/process/count_number_of_occurances.py	/^    def setUp(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
+setUp	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^    def setUp(self):$/;"	m	language:Python	class:CountTotalsTest
+setUp	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def setUp(self):$/;"	m	language:Python	class:StoryTests
+Story	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^from process.story import Story$/;"	i	language:Python
+Story	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^from process.story import Story$/;"	i	language:Python
+Story	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_common_proper_nouns.py	/^from process.story import Story$/;"	i	language:Python
+Story	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_conjunctions.py	/^from process.story import Story$/;"	i	language:Python
+Story	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_proper_nouns.py	/^from process.story import Story$/;"	i	language:Python
+Story	/home/charles/Programming/gutenberg_readability/src/process/count_number_of_occurances.py	/^from process.story import Story$/;"	i	language:Python
+Story	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^from process.story import Story$/;"	i	language:Python
+Story	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^class Story:$/;"	c	language:Python
+StoryTests	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^class StoryTests(unittest.TestCase):$/;"	c	language:Python
+test_can_get_pos	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def test_can_get_pos(self):$/;"	m	language:Python	class:StoryTests
+test_can_get_sentences	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def test_can_get_sentences(self):$/;"	m	language:Python	class:StoryTests
+test_can_get_words	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def test_can_get_words(self):$/;"	m	language:Python	class:StoryTests
+test_can_run	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^    def test_can_run(self):$/;"	m	language:Python	class:AverageNounPhrasesTests
+test_count_functions	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^    def test_count_functions(self):$/;"	m	language:Python	class:CountTotalsTest
+test_length_of_document	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^    def test_length_of_document(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
+test_length_of_document	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_common_proper_nouns.py	/^    def test_length_of_document(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
+test_length_of_document	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_conjunctions.py	/^    def test_length_of_document(self):$/;"	m	language:Python	class:AverageNumberOfConjuctionsTest
+test_length_of_document	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_proper_nouns.py	/^    def test_length_of_document(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
+test_length_of_document	/home/charles/Programming/gutenberg_readability/src/process/count_number_of_occurances.py	/^    def test_length_of_document(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
+total_number_of_adjectives	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^total_number_of_adjectives = make_total_count(['JJ', 'JJR', 'JJS'])$/;"	v	language:Python
+total_number_of_common_and_proper_nouns	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^total_number_of_common_and_proper_nouns = make_total_count(['NN', 'NNS', 'NNP', 'NNPS'])$/;"	v	language:Python
+total_number_of_conjunctions	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^total_number_of_conjunctions = make_total_count(['CC', 'IN'])$/;"	v	language:Python
+total_number_of_proper_nouns	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^total_number_of_proper_nouns = make_total_count(['NNP', 'NNPS'])$/;"	v	language:Python
+traverse	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^    def traverse(tree):$/;"	f	language:Python	function:main
+unittest	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^import unittest$/;"	i	language:Python
+unittest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^import unittest$/;"	i	language:Python
+unittest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_common_proper_nouns.py	/^import unittest$/;"	i	language:Python
+unittest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_conjunctions.py	/^import unittest$/;"	i	language:Python
+unittest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_proper_nouns.py	/^import unittest$/;"	i	language:Python
+unittest	/home/charles/Programming/gutenberg_readability/src/process/count_number_of_occurances.py	/^import unittest$/;"	i	language:Python
+unittest	/home/charles/Programming/gutenberg_readability/src/process/count_total_of.py	/^import unittest$/;"	i	language:Python
+unittest	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^import unittest$/;"	i	language:Python
+words	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def words(self):$/;"	m	language:Python	class:Story
+__init__	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def __init__(self, book_id, plain_text=None):$/;"	m	language:Python	class:Story
