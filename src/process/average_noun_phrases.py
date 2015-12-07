@@ -1,18 +1,10 @@
 import unittest
 import nltk
-import re
 from process.story import Story
-
-# Pattern from http://nbviewer.ipython.org/github/lukewrites/NP_chunking_with_nltk/blob/master/NP_chunking_with_the_NLTK.ipynb
-patterns = """
-        NP: {<JJ>*<NN>+}
-        {<JJ>*<NN><CC>*<NN>+}
-        """
-NPChunker = nltk.RegexpParser(patterns)
+from process.tag_chunker import phrase_chunker
 
 def main(book):
     noun_phrases = 0.0
-    result = NPChunker.parse(book.pos_words)
     def traverse(tree):
         noun_phrases = 0.0
         if not hasattr(tree, 'label'):
@@ -22,7 +14,7 @@ def main(book):
         for child in tree:
             noun_phrases += traverse(child)
         return noun_phrases
-    noun_phrases = traverse(result)
+    noun_phrases = traverse(book.chunked_words)
     return noun_phrases/len(book.sentences)
 
 class AverageNounPhrasesTests(unittest.TestCase):

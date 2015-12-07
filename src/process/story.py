@@ -5,7 +5,7 @@ into various tokens that will be used multiple times
 import nltk.data
 import unittest
 from retrieval.get_book_by_id import main as get_book_by_id
-from stat_parser import Parser
+from process.tag_chunker import phrase_chunker
 
 class Story:
     def __init__(self, book_id, plain_text=None):
@@ -20,7 +20,7 @@ class Story:
         self._sentences = None
         self._words = None
         self._pos = None
-        self._tagged_sentences = None
+        self._chunked_words = None
 
     @property
     def sentences(self):
@@ -40,6 +40,12 @@ class Story:
         if self._pos == None:
             self._pos = nltk.pos_tag(self.words)
         return self._pos
+
+    @property
+    def chunked_words(self):
+        if self._chunked_words == None:
+            self._chunked_words = phrase_chunker.parse(self.pos_words)
+        return self._chunked_words
     
 class StoryTests(unittest.TestCase):
     def setUp(self):
