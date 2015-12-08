@@ -1,4 +1,5 @@
 !_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+all_functions	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^all_functions = {$/;"	v	language:Python
 AverageNounPhrasesTests	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^class AverageNounPhrasesTests(unittest.TestCase):$/;"	c	language:Python
 AverageNounPhrasesTests	/home/charles/Programming/gutenberg_readability/src/process/ratio_of_common_to_proper_nouns.py	/^class AverageNounPhrasesTests(unittest.TestCase):$/;"	c	language:Python
 AverageNumberOfAdjectivesTest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^class AverageNumberOfAdjectivesTest(unittest.TestCase):$/;"	c	language:Python
@@ -8,6 +9,13 @@ AverageNumberOfAdjectivesTest	/home/charles/Programming/gutenberg_readability/sr
 AverageNumberOfConjuctionsTest	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_conjunctions.py	/^class AverageNumberOfConjuctionsTest(unittest.TestCase):$/;"	c	language:Python
 AveragePrepositionalPhrasesTests	/home/charles/Programming/gutenberg_readability/src/process/average_prepositional_phrases.py	/^class AveragePrepositionalPhrasesTests(unittest.TestCase):$/;"	c	language:Python
 AverageVerbPhrasesTests	/home/charles/Programming/gutenberg_readability/src/process/average_verb_phrases.py	/^class AverageVerbPhrasesTests(unittest.TestCase):$/;"	c	language:Python
+average_noun_phrases	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from average_noun_phrases import main as average_noun_phrases$/;"	i	language:Python
+average_number_of_adjectives	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from average_number_of_adjectives import main as average_number_of_adjectives$/;"	i	language:Python
+average_number_of_common_proper_nouns	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from average_number_of_common_proper_nouns import main as average_number_of_common_proper_nouns$/;"	i	language:Python
+average_number_of_conjunctions	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from average_number_of_conjunctions import main as average_number_of_conjunctions$/;"	i	language:Python
+average_number_of_proper_nouns	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from average_number_of_proper_nouns import main as average_number_of_proper_nouns$/;"	i	language:Python
+average_prepositional_phrases	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from average_prepositional_phrases import main as average_prepositional_phrases$/;"	i	language:Python
+average_verb_phrases	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from average_verb_phrases import main as average_verb_phrases$/;"	i	language:Python
 chunk	/home/charles/Programming/gutenberg_readability/src/process/tag_chunker.py	/^import nltk.chunk$/;"	i	language:Python
 chunked_words	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def chunked_words(self):$/;"	m	language:Python	class:Story
 ChunkParser	/home/charles/Programming/gutenberg_readability/src/process/tag_chunker.py	/^class ChunkParser(nltk.ChunkParserI):$/;"	c	language:Python
@@ -15,6 +23,7 @@ CountTotalsTest	/home/charles/Programming/gutenberg_readability/src/process/coun
 data	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^import nltk.data$/;"	i	language:Python
 get_book_by_id	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^from retrieval.get_book_by_id import main as get_book_by_id$/;"	i	language:Python
 itertools	/home/charles/Programming/gutenberg_readability/src/process/tag_chunker.py	/^import itertools$/;"	i	language:Python
+length_of_document	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from length_of_document import main as length_of_document$/;"	i	language:Python
 main	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^def main(book):$/;"	f	language:Python
 main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^main = make_main(['JJ', 'JJR', 'JJS'])$/;"	v	language:Python
 main	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_common_proper_nouns.py	/^main = make_main(['NN', 'NNS', 'NNP', 'NNPS'])$/;"	v	language:Python
@@ -42,6 +51,7 @@ phrase_chunker	/home/charles/Programming/gutenberg_readability/src/process/avera
 phrase_chunker	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^from process.tag_chunker import phrase_chunker$/;"	i	language:Python
 phrase_chunker	/home/charles/Programming/gutenberg_readability/src/process/tag_chunker.py	/^phrase_chunker = ChunkParser(nltk.corpus.conll2000.chunked_sents())$/;"	v	language:Python
 pos_words	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def pos_words(self):$/;"	m	language:Python	class:Story
+ratio_of_common_to_proper_nouns	/home/charles/Programming/gutenberg_readability/src/process/index.py	/^from ratio_of_common_to_proper_nouns import main as ratio_of_common_to_proper_nouns$/;"	i	language:Python
 sentences	/home/charles/Programming/gutenberg_readability/src/process/story.py	/^    def sentences(self):$/;"	m	language:Python	class:Story
 setUp	/home/charles/Programming/gutenberg_readability/src/process/average_noun_phrases.py	/^    def setUp(self):$/;"	m	language:Python	class:AverageNounPhrasesTests
 setUp	/home/charles/Programming/gutenberg_readability/src/process/average_number_of_adjectives.py	/^    def setUp(self):$/;"	m	language:Python	class:AverageNumberOfAdjectivesTest
