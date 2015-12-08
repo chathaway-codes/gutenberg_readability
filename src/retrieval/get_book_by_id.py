@@ -35,8 +35,10 @@ def main(book_id, mirror=mirror):
 				url2 = href
 				break
 	if url2 == "":
+		print book_id
+		print url
 		raise Exception("Book not found")
-	return urllib2.urlopen(url + url2).read()
+	return urllib2.urlopen(url + url2).read().decode('utf-8')
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="Returns the plain text of a book for given id")
