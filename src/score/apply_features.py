@@ -5,16 +5,25 @@ from process.story import Story
 from settings import FEATURE_CSV
 import csv
 
+
 def run_features(book_ids, features):
+    read_ids = []
+    with open(FEATURE_CSV, 'r') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            read_ids.append(row['book_id'])
+
     # Get a list of the books loaded
     books = []
     for id in book_ids:
-        try:
-            books += [Story(id)]
-            print "Loaded book", id
-        except:
-            print "Error finding book", id
-
+        if id in read_ids:
+            print "Already processed book", id
+        else:
+            try:
+                books += [Story(id)]
+                print "Loaded book", id
+            except:
+                print "Error finding book", id
 
     # Open the CSV file for writing; headers should be in the form of
     #  book_id,feature1,feature2,feature3...
@@ -27,10 +36,10 @@ def run_features(book_ids, features):
         book_results = {'book_id': book.book_id}
         print "Processing book ", book.book_id
         for name in features:
-                print "->", name
-                result = features[name](book)
-                print "--> done!"
-                book_results[name] = result
+            print "->", name
+            result = features[name](book)
+            print "--> done!"
+            book_results[name] = result
         with open(FEATURE_CSV, 'a+') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writerow(book_results)
