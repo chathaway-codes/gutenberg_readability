@@ -4,35 +4,40 @@ It then writes these features to a csv file specified in settings.FEATURE_CSV ""
 from process.story import Story
 from settings import FEATURE_CSV
 import csv
+import os
 
 
 def run_features(book_ids, features):
     read_ids = []
-    with open(FEATURE_CSV, 'r') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            read_ids.append(row['book_id'])
+    fieldnames = ['book_id'] + [name for name in features]
+    if os.path.isfile(FEATURE_CSV):
+        with open(FEATURE_CSV, 'r') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                read_ids.append(int(row['book_id']))
+    else:
+        with open(FEATURE_CSV, 'a+') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
 
     # Get a list of the books loaded
     books = []
-    for id in book_ids:
-        if id in read_ids:
-            print "Already processed book", id
-        else:
-            try:
-                books += [Story(id)]
-                print "Loaded book", id
-            except:
-                print "Error finding book", id
 
     # Open the CSV file for writing; headers should be in the form of
     #  book_id,feature1,feature2,feature3...
-    fieldnames = ['book_id'] + [name for name in features]
-    with open(FEATURE_CSV, 'a+') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
 
-    for book in books:
+    for book_id in book_ids:
+        book = None
+        if int(book_id) in read_ids:
+            print "Already processed book", book_id
+            continue
+        else:
+            try:
+                book = Story(book_id)
+                print "Loaded book", book_id
+            except:
+                print "Error finding book", book_id
+                continue
         book_results = {'book_id': book.book_id}
         print "Processing book ", book.book_id
         for name in features:
