@@ -1,4 +1,4 @@
-from settings import FEATURE_CSV
+from settings import FEATURE_CSV, FLESCH_KINCAID_CSV
 import csv
 
 def fkscore(words_per_sentence, syllables_per_word):

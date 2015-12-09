@@ -6,24 +6,34 @@ from numpy import array
 from score.get_gold_standard import *
 from process.index import all_functions
 import itertools
+import sys
 
-def cluster_things(keys_to_use):
+def cluster_things(keys_to_use, gold_standard="normal"):
 	# Open the CSV file
 	vectors = []
+	gold_filter = []
 	with open(FEATURE_CSV, 'r') as csvfile:
 		reader = csv.DictReader(csvfile)
 		for row in reader:
 			row_values = []
+			gold_filter += [int(row['book_id'])]
 			for key in row:
 				if key != 'book_id' and key in keys_to_use:
 					row_values += [float(row[key])]
 			vectors += [row_values]
+	gold_clusters = []
+	if gold_standard == "normal":
+		gold_clusters = get_gold_standard(gold_filter)
+	else:
+		gold_clusters = get_kincaid_cluster(gold_filter)
 	vectors = [array(f) for f in vectors]
-	clusterer = cluster.KMeansClusterer(2, euclidean_distance)
+	clusterer = cluster.KMeansClusterer(len(gold_clusters), euclidean_distance)
 	clusters = clusterer.cluster(vectors, True) 
 
 	# Attempt to classify the things again, so we know which vector they belong to
-	results = [[], []]
+	results = []
+	for i in range(0, len(gold_clusters)):
+		results += [[]]
 	with open(FEATURE_CSV, 'r') as csvfile:
 		reader = csv.DictReader(csvfile)
 		for row in reader:
@@ -40,7 +50,6 @@ def cluster_things(keys_to_use):
 			t += [int(row['book_id'])]
 		book_ids += [t]
 	# Open the source files and find the correct things
-	gold_clusters = get_gold_standard(book_ids[0] + book_ids[1])
 	return score_clusters(gold_clusters, book_ids)
 
 
@@ -74,7 +83,9 @@ if __name__ == "__main__":
 		if len(combo) == 0:
 			continue
 		try:
-			f_score, recall, precision = cluster_things(combo)
+			f_score, recall, precision = cluster_things(combo, 'kincaid')
 			print "%s,%s,%s,%s" % (f_score, recall, precision, "+".join(combo))
-		except:
+			sys.stdout.flush()
+		except Exception as ex:
+			#print "Caught exception {}".format(ex)
 			pass
