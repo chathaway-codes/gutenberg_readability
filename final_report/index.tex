@@ -72,6 +72,9 @@ It will then print the clustering results with the default feature-set to standa
 
 \section{Linguistic Features}
 
+Based on previous work, a list of possible features was generated that could be used as a starting point for clustering the data.
+As well as this list, a new list of features was created with other features that may be useful for clustering.
+
 \begin{table}[!htbp]
 	\begin{center}
 		\begin{tabular}{| c |} \hline
@@ -113,12 +116,90 @@ It will then print the clustering results with the default feature-set to standa
 			Total number of passive sentences in document \\ \hline
 			Average number of prepositional phrases per sentence \\ \hline
 			Total number of prepositional phrases in document \\ \hline
-			
 		\end{tabular}
 	\end{center}
 	\caption{List of possible new features}
 	\label{table:features2}
 \end{table}
+
+From these two lists, a number of features were selected and grouped together to form 6 possible metrics for clustering the data.
+A correlation between nouns and initial results for clustering was the reason for deciding that features that used nouns should be in their own group.
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Total number of noun phrases in document \\ \hline
+      Total number of proper nouns in document \\ \hline
+			Total number of common and proper nouns in document \\ \hline
+			Ratio of proper nouns to common nouns in document \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{Document Wide Noun Features}
+	\label{table:group1}
+\end{table}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+      Average number of noun phrases per sentence \\ \hline
+			Average number of proper nouns per sentence \\ \hline
+			Average number of common and proper nouns per sentence \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{Sentence Wide Noun Features}
+	\label{table:group2}
+\end{table}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Total number of verb phrases in document \\ \hline
+			Total number of adjectives in document \\ \hline
+			Total number of conjunctions in document \\ \hline
+			Total number of prepositional phrases in document \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{Document Wide Non-Noun Features}
+	\label{table:group3}
+\end{table}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Average number of verb phrases per sentence \\ \hline
+			Average number of adjectives per sentence \\  \hline
+			Average number of conjunctions per sentence \\ \hline
+			Average number of prepositional phrases per sentence \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{Sentence Wide Non-Noun Features}
+	\label{table:group4}
+\end{table}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+      Length of document \\ \hline
+			Average word length in document \\ \hline
+      Total number of unique words in document \\ \hline
+      Ratio of unique words to total number of words in document \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{Document Wide Statistics Features}
+	\label{table:group5}
+\end{table}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Average number of words per sentence \\ \hline
+      Average number of syllables per word \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{Sentence Wide Statistics Features}
+	\label{table:group6}
+\end{table}
+
 
 \section{Results}
 
