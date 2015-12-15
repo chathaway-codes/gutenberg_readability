@@ -35,8 +35,40 @@ Given an input of 2292 books (320 children, 2002 adult, with 32 books overlappin
 
 Although not extensively, we did evaluate and learn from a number of previous works.
 Most significantly, we borrowed features from work done by Feng at al. \cite{feng2009cognitively}.
+Feng focused on the concept of documents being difficult to read due to "items fall[ing] out of memory before they can be semantically encoded".
+With this in mind, most of the novel metrics they designed focus on the number of entities mentioned in a document.
+Their work was motived to help organize documents by readability for adults with intellectual disabilities.
+
+Our work is different than this in that we are using a much different data source (they were focused on news articles, where we are focused on fiction books).
+In addition, instead of focusing on adults with intellectual disabilities directly, we are instead more interested in examining books in relation to each other, with the assumption that easier to read books would be easier for both adults with ID, and developmentally delayed children.
 
 \section{Methodology and system design}
+
+The system is written in Python, and utilizes the Natural Language ToolKit (NLTK) \cite{loper2002nltk}.
+The toolkit was trained using a portion of the Penn Treebank and the Conll2000 corpus.
+The potion used was provided by NLTK via it's distribution manager (nltk.download).
+
+Once the corpus was downloaded and configured, we built the system in 3 stages.
+The first was retrieving the document to be analyzed; this was done ahead of time to verify the availability of the resources, and allow us to develop without worrying about going over any kind of bandwidth quota.
+However, now that development is mostly complete, this step can be skipped and documents can be downloaded directly from a Gutenberg mirror.
+
+The next step is to process the data.
+This includes using the trained POS tagger, chunker, and NE tagger on all documents, running a variety of feature function on the documents, then recording the device.
+Our system writes data to a CSV file as it is processed, and uses a "Book" object to cache the results of each computation between features.
+
+And lastly, we score the results of the system.
+This process involves reading in the CSV file and training our clustering algorithmn, then clustering our test data.
+Ultimately, we determine the accuracy of the clustering using a $B^3$ scoring system.
+
+To get a better idea of how each feature contributes to the final score, we run the system multiple times with every combination of features.
+
+\subsection{System Usage}
+
+To setup your system, please follow the instruction in the README.md file provided in the repository.
+
+Once configured, simply run "python src/main.py --help" to get a list of options and configuration settings.
+The simplest invocation of this command requires you to specify 2 files; the list of adult books, and the list of children books.
+It will then print the clustering results with the default feature-set to standard out.
 
 \section{Linguistic Features}
 
@@ -89,6 +121,32 @@ Most significantly, we borrowed features from work done by Feng at al. \cite{fen
 \end{table}
 
 \section{Results}
+
+Due to sheer number of results, we merely provided a synopsis consisting of the highest, middle, and worst combination of features.
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c |} \hline
+			f-score & recall & precision & combination of filters \\
+			\hline
+			0.8748384028 & 0.8787276342 & 0.8709834469 & combination 1\\
+			0.6690611348 & 0.7238314176 & 0.6219964193 & combination 2 \\
+			0.6041246854 & 0.74973942 & 0.505873669 &	combination 3 \\
+			0.622534193098 & 0.508873237259 & 0.801571724969 & Baseline \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Results of clustering}
+	\label{table:features2}
+\end{table}
+
+Feature combinations:
+
+\begin{enumerate}
+	\item  average\_number\_of\_adjectives + average\_number\_of\_common\_proper\_nouns
+	\item total\_number\_of\_adjectives+average\_verb\_phrases + total\_number\_of\_noun\_phrases + total\_number\_of\_prepositional\_phrases + total\_number\_of\_verb\_phrases + total\_number\_of\_conjunctions+average\_number\_of\_common\_proper\_nouns
+	\item average\_verb\_phrases + ratio\_of\_common\_to\_proper\_nouns+average\_number\_of\_conjunctions + average\_prepositional\_phrases
+\end{enumerate}
 
 \section{Conclusion}
 
