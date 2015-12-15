@@ -1,0 +1,98 @@
+\documentclass[]{article}
+
+%opening
+\title{Automated Reading Comprehension Clustering}
+\author{Charles Hathaway, David Hedin}
+
+\usepackage[final]{pdfpages}
+\usepackage{graphicx}
+\usepackage[style=ieee,backend=bibtex]{biblatex}
+
+\bibliography{biblo}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+Determining the level of readability of documents, especially books, has lots of application in the domain of education.
+It helps to quantify and group books which may be used at a particular reading level, therefore enhancing the classroom expierence for both instructors and teachers.
+In this paper, we ran an experiment with a variety of books obtained from Project Gutenberg \cite{gutenberg2015} organized by the project maintainers into a 2 groups; books for children, and adult fiction.
+To further enhance the analysis of this project, we also used our features to try and cluster books into clusters defined by the Flesch–Kincaid readability metrics \cite{kincaid1975derivation}.
+
+\end{abstract}
+
+\section{Introduction}
+
+There are several systems currently used to classify books based on reading comprehension level, for numerous applications ranging from selecting books for classrooms, to measuring an individuals literacy skills for both medical (autism, dyslexia, etc.) and educational purposes.
+In this paper, we analyze the results of utilizing several existing features to classify works in addition to a variety of novel features we created.
+The primary goal is to cluster books in groups representing the original designation of books; adult fiction and children fiction.
+
+Given an input of 2292 books (320 children, 2002 adult, with 32 books overlapping) we achieved an F-score of 87.5\%; this is a significant improvement over the 62\% baseline \footnote{There was some in-class discussion which suggested our baseline would be (total number of adult books)/(total number of books), which would put the baseline at around 86\%. After testing this experimentally, and reasoning things out, we concluded the true baseline would be 62\% as our algorithm had no idea what the sizes of the clusters were, and a truly random distribution would but half in each cluster, with one cluster having a higher chance of being correct than the other}
+
+\section{Previous Works}
+
+Although not extensively, we did evaluate and learn from a number of previous works.
+Most significantly, we borrowed features from work done by Feng at al. \cite{feng2009cognitively}.
+
+\section{Methodology and system design}
+
+\section{Linguistic Features}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Average number of words per sentence \\ \hline
+			Average number of syllables per word \\ \hline
+			Percentage of words with more than 3 syllables \\ \hline
+			Average number of noun phrases per sentence \\ \hline
+			Average number of common and proper nouns per sentence \\ \hline
+			Average number of verb phrases per sentence \\ \hline
+			Average number of adjectives per sentence \\  \hline
+			Average number of conjunctions per sentence \\ \hline
+			Average number of prepositional phrases per sentence \\ \hline
+			Total number of noun phrases in document \\ \hline
+			Total number of common and proper nouns in document \\ \hline
+			Total number of verb phrases in document \\ \hline
+			Total number of adjectives in document \\ \hline
+			Total number of conjunctions in document \\ \hline
+			Total number of prepositional phrases in document \\ \hline
+			Number of entity mentions in document \\ \hline
+			Number of unique entities in document \\ \hline
+			Average number of entity mentions per sentence \\ \hline
+			Average number of unique entities per sentence \\ \hline
+		\end{tabular}
+	\end{center}
+	\caption{List of possible features from previous work\cite{}}
+	\label{table:features1}
+\end{table}
+
+\begin{table}[!htbp]
+	\begin{center}
+		\begin{tabular}{| c |} \hline
+			Average word length in document \\ \hline
+			Total number of unique words in document\\ \hline
+			Ratio of unique words to total number of words in document \\ \hline
+			Ratio of proper nouns to common nouns in document \\ \hline
+			Length of document \\ \hline
+			Average number of proper nouns per sentence \\ \hline
+			Total number of proper nouns in document \\ \hline
+			Total number of passive sentences in document \\ \hline
+			Average number of prepositional phrases per sentence \\ \hline
+			Total number of prepositional phrases in document \\ \hline
+			
+		\end{tabular}
+	\end{center}
+	\caption{List of possible new features}
+	\label{table:features2}
+\end{table}
+
+\section{Results}
+
+\section{Conclusion}
+
+
+\printbibliography
+
+\end{document}
