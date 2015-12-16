@@ -30,7 +30,7 @@ There are several systems currently used to classify books based on reading comp
 In this paper, we analyze the results of utilizing several existing features to classify works in addition to a variety of novel features we created.
 The primary goal is to cluster books in groups representing the original designation of books; adult fiction and children fiction.
 
-Given an input of 3332 books (1424 children, 2021 adult, with 113 books overlapping) we achieved an F-score of 82.2\%; this is a significant improvement over the 75.5\% baseline of scoring all books as adult books, because they are the majority.
+Given an input of 3332 books (1424 children, 2021 adult, with 113 books overlapping) we achieved an F-score of 60.7\%; this is a significant improvement over the 82.2\% baseline of scoring all books as adult books, because they are the majority.
 
 \section{Previous Works}
 
@@ -56,16 +56,15 @@ However, now that development is mostly complete, this step can be skipped and d
 The next step is to process the data.
 This includes using the trained POS tagger, chunker, and NE tagger on all documents, running a variety of feature function on the documents, then recording the device.
 Our system writes data to a CSV file as it is processed, and uses a "Book" object to cache the results of each computation between features.
+We manually reviewed the books to look for outliers that would imply a book that was not really a book.
+These included README files, audio book description files and 2 books in Chinese.
+These greatly skewed the data and were removed so that clustering would yield reasonable results.
 
 And lastly, we score the results of the system.
 This process involves reading in the CSV file and training our clustering algorithmn, then clustering our test data.
 Ultimately, we determine the accuracy of the clustering using a $B^3$ scoring system.
 
 To get a better idea of how each feature contributes to the final score, we run the system multiple times with every combination of features.
-
-Our initial experiment ran with 300-some-odd children books and over 2000 adult books.
-If we assume all books to be adult books, we can get a f-score of over 90\%.
-To combat this problem, we opted to include a larger selection of children books.
 
 \subsection{System Usage}
 
@@ -211,7 +210,9 @@ These clusters are documented in tables \ref{table:group1}-\ref{table:group6}
 
 Originally, we ran all combinations of features to find the best combination.
 This was time consuming, and not very telling since there were a few features which clearly were superior to others.
-To help make more sense of the data, we groups the features (as described above) and ran all combinations of those groups.
+To help make more sense of the data, we grouped the features (as described above) and ran all combinations of those groups.
+We attempted to cluster all books into 2 clusters, one for adult books and one for children's books.
+We ran these groups using the baseline of all books being in the adult cluster to measure our F-scores.
 This gave us much more manageable output, which is recorded in the table below.
 The "combination of features" column gives the table ID of the feature applied.
 
@@ -286,9 +287,8 @@ The "combination of features" column gives the table ID of the feature applied.
 	\label{table:features2}
 \end{longtable}
 
-These results were less than stellar.
-We calculated the baseline to be 0.822113773588, which is slightly better than our results.
-However, when we compare the 
+We then compared the best of these results to the Flesch-Kincaid score that was calculated against the baseline, again creating 2 clusters.
+This showed that the book grouping on Project Gutenberg are not exactly accurate when compared to modern metrics.
 
 \begin{longtable}{| c | c | c | c | c | c |} \hline
 	f-score & recall & precision & \# in cluster 1 & \# in cluster 2 & combination of features \\
@@ -301,6 +301,10 @@ However, when we compare the
 	\label{table:kincaid_clustering}
 \end{longtable}
 
+To get a better understanding our how our metrics were performing, we instead calculated our score using the Flesch-Kincaid scores as the baseline.
+This meant clustering using the feature groups we generated to create 2 clusters, then comparing them against the clusters generated using the Flesch-Kincaid scores.
+
+
 
 \section{Conclusion}
 
@@ -308,6 +312,7 @@ Our best results are barely the same as the baseline; this can tell us a few int
 Either our features are totally useless (which seems unlikely, since the Kincaid readability tests have been used for years), or our corpus is not divided well or is difficult to assign features to.
 Given that Project Gutenberg only houses books who's copyright has expired, this leads to the interesting proposition that language has shifted so much our POS tag failed to achieve good results; however, we can't test this (at least not easily).
 We have no annotated corpus' to compare our results with, and therefore no way to verify the accuracy of the POS tagger.
+The Flesch-Kincaid scores were also developed in 1975, which means that the shift in language could lead to inaccurate results using these scores as well.
 
 As for the possibility that the gold standard we are using, bookshelves as defined by the Project Gutenberg curators, being not properly categorized raises another point of failure.
 In figures 1 and 2, we have 2 sample books from the Project Gutenberg collection.
@@ -323,7 +328,7 @@ This suggests that the categorization of these books may not be obvious or consi
 		covered up with newspapers in the other, while a parasol was tucked under her arm.  The conductor helped her off the car and then the engineer started his train again, so that it puffed and groaned and moved slowly away up the track.  The reason he was so late was because all through the night there were times when the solid earth shook and trembled under him, and the engineer was afraid that at any moment the rails might spread apart and an accident happen to his passengers.  So he moved the cars slowly and with caution.
 	\end{quotation}
 	\label{figure:book1}
-	\caption{Dorothy and the Wizard in Oz, L. Frank Baum}
+	\caption{Dorothy and the Wizard in Oz, L. Frank Baum; Book from Adult's Fiction Bookshelf}
 \end{figure}
 
 \begin{figure}
@@ -332,7 +337,7 @@ This suggests that the categorization of these books may not be obvious or consi
 		While his father, mother, and sister Doris had been absent in New York for a week-end visit and Havens, the chauffeur, was ill at the hospital, the boy had taken the big six-cylinder car from the garage without anybody's permission and carried a crowd of his friends to Torrington to a football game. And that was not the worst of it, either. At the foot of the long hill leading into the village the mighty leviathan so unceremoniously borrowed had come to a halt, refusing to move another inch, and Stephen now sat helplessly in it, awaiting theaid his comrades had promised to send back from the town.
 	\end{quotation}
 	\label{figure:book2}
-	\caption{Steve and the Steam Engine, Sara Ware Bassett}
+	\caption{Steve and the Steam Engine, Sara Ware Bassett; Book from Children's Fiction Bookshelf}
 \end{figure}
 
 \printbibliography
