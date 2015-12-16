@@ -30,7 +30,7 @@ There are several systems currently used to classify books based on reading comp
 In this paper, we analyze the results of utilizing several existing features to classify works in addition to a variety of novel features we created.
 The primary goal is to cluster books in groups representing the original designation of books; adult fiction and children fiction.
 
-Given an input of 2292 books (320 children, 2002 adult, with 32 books overlapping) we achieved an F-score of 87.5\%; this is a significant improvement over the 62\% baseline \footnote{There was some in-class discussion which suggested our baseline would be (total number of adult books)/(total number of books), which would put the baseline at around 86\%. After testing this experimentally, and reasoning things out, we concluded the true baseline would be 62\% as our algorithm had no idea what the sizes of the clusters were, and a truly random distribution would but half in each cluster, with one cluster having a higher chance of being correct than the other}
+Given an input of 3332 books (1424 children, 2021 adult, with 113 books overlapping) we achieved an F-score of 82.2\%; this is a significant improvement over the 75.5\% baseline of scoring all books as adult books, because they are the majority.
 
 \section{Previous Works}
 
