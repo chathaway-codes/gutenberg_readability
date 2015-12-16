@@ -5,6 +5,7 @@
 \author{Charles Hathaway, David Hedin}
 
 \usepackage[final]{pdfpages}
+\usepackage{longtable}
 \usepackage{graphicx}
 \usepackage[style=ieee,backend=bibtex]{biblatex}
 
@@ -103,7 +104,7 @@ As well as this list, a new list of features was created with other features tha
 			Average number of unique entities per sentence \\ \hline
 		\end{tabular}
 	\end{center}
-	\caption{List of possible features from previous work\cite{}}
+	\caption{List of possible features from previous work \cite{feng2009cognitively}}
 	\label{table:features1}
 \end{table}
 
@@ -128,6 +129,7 @@ As well as this list, a new list of features was created with other features tha
 
 From these two lists, a number of features were selected and grouped together to form 6 possible metrics for clustering the data.
 A correlation between nouns and initial results for clustering was the reason for deciding that features that used nouns should be in their own group.
+These clusters are documented in tables \ref{table:group1}-\ref{table:group6}
 
 \begin{table}[!htbp]
 	\begin{center}
@@ -207,34 +209,131 @@ A correlation between nouns and initial results for clustering was the reason fo
 
 \section{Results}
 
-Due to sheer number of results, we merely provided a synopsis consisting of the highest, middle, and worst combination of features.
+Originally, we ran all combinations of features to find the best combination.
+This was time consuming, and not very telling since there were a few features which clearly were superior to others.
+To help make more sense of the data, we groups the features (as described above) and ran all combinations of those groups.
+This gave us much more manageable output, which is recorded in the table below.
+The "combination of features" column gives the table ID of the feature applied.
 
-\begin{table}[!htbp]
-	\begin{center}
-		\begin{tabular}{| c | c | c | c |} \hline
-			f-score & recall & precision & combination of filters \\
-			\hline
-			0.8748384028 & 0.8787276342 & 0.8709834469 & combination 1\\
-			0.6690611348 & 0.7238314176 & 0.6219964193 & combination 2 \\
-			0.6041246854 & 0.74973942 & 0.505873669 &	combination 3 \\
-			0.622534193098 & 0.508873237259 & 0.801571724969 & Baseline \\
-			\hline
-		\end{tabular}
-	\end{center}
+\begin{longtable}{| c | c | c | c |} \hline
+		f-score & recall & precision & combination of features \\
+		\hline
+		0.8218207375 & 0.7606606607 & 0.8936757446 & 4 \\
+		0.8218207375 & 0.7606606607 & 0.8936757446 & 8 \\
+		0.8218207375 & 0.7606606607 & 0.8936757446 & 4+6 \\
+		0.8218207375 & 0.7606606607 & 0.8936757446 & 4+8 \\
+		0.8218207375 & 0.7606606607 & 0.8936757446 & 6+8 \\
+		0.8218207375 & 0.7606606607 & 0.8936757446 & 4+6+8 \\
+		0.7409439859 & 0.6349758162 & 0.8893661846 & 6 \\
+		0.607092714 & 0.5114919282 & 0.7466449541 & 3 \\
+		0.607092714 & 0.5114919282 & 0.7466449541 & 3+4 \\
+		0.607092714 & 0.5114919282 & 0.7466449541 & 3+6 \\
+		0.607092714 & 0.5114919282 & 0.7466449541 & 3+8 \\
+		0.607092714 & 0.5114919282 & 0.7466449541 & 3+4+6 \\
+		0.607092714 & 0.5114919282 & 0.7466449541 & 3+4+8 \\
+		0.607092714 & 0.5114919282 & 0.7466449541 & 3+6+8 \\
+		0.607092714 & 0.5114919282 & 0.7466449541 & 3+4+6+8 \\
+		0.6021581601 & 0.5110111293 & 0.7328788591 & 3+4+5 \\
+		0.6021581601 & 0.5110111293 & 0.7328788591 & 3+5+8 \\
+		0.6011726778 & 0.5111912539 & 0.7295988678 & 4+5 \\
+		0.6011726778 & 0.5111912539 & 0.7295988678 & 4+5+6 \\
+		0.6011726778 & 0.5111912539 & 0.7295988678 & 4+5+8 \\
+		0.6011726778 & 0.5111912539 & 0.7295988678 & 4+5+6+8 \\
+		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+5 \\
+		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+5+6 \\
+		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+4+5+6 \\
+		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+4+5+8 \\
+		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+5+6+8 \\
+		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+4+5+6+8 \\
+		0.6000582208 & 0.511368158 & 0.7259677529 & 5 \\
+		0.6000582208 & 0.511368158 & 0.7259677529 & 5+6 \\
+		0.6000582208 & 0.511368158 & 0.7259677529 & 5+8 \\
+		0.6000582208 & 0.511368158 & 0.7259677529 & 5+6+8 \\
+		0.5980456604 & 0.5120879049 & 0.7186817211 & 4+7+8 \\
+		0.5980456604 & 0.5120879049 & 0.7186817211 & 3+4+5+7 \\
+		0.5980456604 & 0.5120879049 & 0.7186817211 & 3+5+6+7 \\
+		0.5980456604 & 0.5120879049 & 0.7186817211 & 4+5+6+7 \\
+		0.5980456604 & 0.5120879049 & 0.7186817211 & 5+6+7+8 \\
+		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+5+7 \\
+		0.5976007315 & 0.5124224422 & 0.7167424626 & 5+6+7 \\
+		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+5+7+8 \\
+		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+4+5+6+7 \\
+		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+4+5+7+8 \\
+		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+5+6+7+8 \\
+		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+4+5+6+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 3+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 4+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 5+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 6+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 3+4+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 3+6+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 3+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 4+5+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 4+6+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 5+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 6+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 3+4+6+7 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 3+4+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 3+6+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 4+5+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 4+6+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 3+4+6+7+8 \\
+		0.5968403761 & 0.512223071 & 0.714946885 & 4+5+6+7+8 \\
+		\hline
 	\caption{Results of clustering}
 	\label{table:features2}
-\end{table}
+\end{longtable}
 
-Feature combinations:
+These results were less than stellar.
+We calculated the baseline to be 0.822113773588, which is slightly better than our results.
+However, when we compare the 
 
-\begin{enumerate}
-	\item  average\_number\_of\_adjectives + average\_number\_of\_common\_proper\_nouns
-	\item total\_number\_of\_adjectives+average\_verb\_phrases + total\_number\_of\_noun\_phrases + total\_number\_of\_prepositional\_phrases + total\_number\_of\_verb\_phrases + total\_number\_of\_conjunctions+average\_number\_of\_common\_proper\_nouns
-	\item average\_verb\_phrases + ratio\_of\_common\_to\_proper\_nouns+average\_number\_of\_conjunctions + average\_prepositional\_phrases
-\end{enumerate}
+\begin{longtable}{| c | c | c | c | c | c |} \hline
+	f-score & recall & precision & \# in cluster 1 & \# in cluster 2 & combination of features \\
+	\hline
+0.821 & 0.893 & 0.760 & 2 & 3330 & flesch\_kincaid\_score \\
+0.821 & 0.893 & 0.760 & 3330 & 2 & flesch\_kincaid\_grade \\
+0.821 & 0.893 & 0.760 & 2 & 3330 & flesch\_kincaid\_score+flesch\_kincaid\_grade \\
+\hline
+	\caption{Using Kincaid as a Metric}
+	\label{table:kincaid_clustering}
+\end{longtable}
+
 
 \section{Conclusion}
 
+Our best results are barely the same as the baseline; this can tell us a few interesting things.
+Either our features are totally useless (which seems unlikely, since the Kincaid readability tests have been used for years), or our corpus is not divided well or is difficult to assign features to.
+Given that Project Gutenberg only houses books who's copyright has expired, this leads to the interesting proposition that language has shifted so much our POS tag failed to achieve good results; however, we can't test this (at least not easily).
+We have no annotated corpus' to compare our results with, and therefore no way to verify the accuracy of the POS tagger.
+
+As for the possibility that the gold standard we are using, bookshelves as defined by the Project Gutenberg curators, being not properly categorized raises another point of failure.
+In figures 1 and 2, we have 2 sample books from the Project Gutenberg collection.
+When presented during our proposal, it was difficult for the class to distinguish them with ease.
+This suggests that the categorization of these books may not be obvious or consistent.
+
+\begin{figure}
+	\begin{quotation}
+		The train from 'Frisco was very late.  It should have arrived at Hugson's Siding at midnight, but it was already five o'clock and the gray dawn was breaking in the east when the little train slowly rumbled up to the open shed that served for the station-house.  As it came to a stop the conductor called out in a loud voice:
+		"Hugson's Siding!"
+		At once a little girl rose from her seat and walked to the door of the
+		car, carrying a wicker suit-case in one hand and a round bird-cage
+		covered up with newspapers in the other, while a parasol was tucked under her arm.  The conductor helped her off the car and then the engineer started his train again, so that it puffed and groaned and moved slowly away up the track.  The reason he was so late was because all through the night there were times when the solid earth shook and trembled under him, and the engineer was afraid that at any moment the rails might spread apart and an accident happen to his passengers.  So he moved the cars slowly and with caution.
+	\end{quotation}
+	\label{figure:book1}
+	\caption{Dorothy and the Wizard in Oz, L. Frank Baum}
+\end{figure}
+
+\begin{figure}
+	\begin{quotation}
+		Steve Tolman had done a wrong thing and he knew it.
+		While his father, mother, and sister Doris had been absent in New York for a week-end visit and Havens, the chauffeur, was ill at the hospital, the boy had taken the big six-cylinder car from the garage without anybody's permission and carried a crowd of his friends to Torrington to a football game. And that was not the worst of it, either. At the foot of the long hill leading into the village the mighty leviathan so unceremoniously borrowed had come to a halt, refusing to move another inch, and Stephen now sat helplessly in it, awaiting theaid his comrades had promised to send back from the town.
+	\end{quotation}
+	\label{figure:book2}
+	\caption{Steve and the Steam Engine, Sara Ware Bassett}
+\end{figure}
 
 \printbibliography
 
