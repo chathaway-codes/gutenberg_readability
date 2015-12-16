@@ -9,20 +9,19 @@ def fkgrade(words_per_sentence, syllables_per_word):
 
 def main():
     with open(FEATURE_CSV, 'r') as incsv:
-        with open(FLESCH_KINCAID_CSV, 'a+') as outcsv:
-            fieldnames = ['book_id', 'flesch_kincaid_score', 'flesch_kincaid_grade']
+        with open(FLESCH_KINCAID_CSV, 'w') as outcsv:
+            reader = csv.DictReader(incsv)
+            fieldnames = reader.fieldnames
+            fieldnames.extend(['flesch_kincaid_score', 'flesch_kincaid_grade'])
             writer = csv.DictWriter(outcsv, fieldnames=fieldnames)
             writer.writeheader()
             
-            reader = csv.DictReader(incsv)
             for row in reader:
-                results = {}
-                results['book_id'] = row["book_id"]
                 words = float(row["average_words"])
                 syllables = float(row["average_syllables"])
-                results['flesch_kincaid_score'] = fkscore(words, syllables)
-                results['flesch_kincaid_grade'] = fkgrade(words, syllables)
-                writer.writerow(results)
+                row['flesch_kincaid_score'] = fkscore(words, syllables)
+                row['flesch_kincaid_grade'] = fkgrade(words, syllables)
+                writer.writerow(row)
 
 
 if __name__ == "__main__":
