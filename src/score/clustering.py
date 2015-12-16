@@ -1,5 +1,6 @@
-from settings import FEATURE_CSV
+from settings import FEATURE_CSV, PICKLE_FILE
 import csv
+import pickle
 from nltk import cluster
 from nltk.cluster import euclidean_distance
 from numpy import array
@@ -8,7 +9,7 @@ from process.index import all_functions
 import itertools
 import sys
 
-def cluster_things(keys_to_use, gold_standard="normal"):
+def cluster_things(keys_to_use, gold_standard="normal", make_pickle=False):
 	# Open the CSV file
 	vectors = []
 	gold_filter = []
@@ -29,6 +30,8 @@ def cluster_things(keys_to_use, gold_standard="normal"):
 	vectors = [array(f) for f in vectors]
 	clusterer = cluster.KMeansClusterer(len(gold_clusters), euclidean_distance)
 	clusters = clusterer.cluster(vectors, True) 
+	if make_pickle == True:
+		pickle.dump(clusterer, open(PICKLE_FILE, 'w'))
 
 	# Attempt to classify the things again, so we know which vector they belong to
 	results = []
