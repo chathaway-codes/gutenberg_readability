@@ -8,6 +8,7 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 \usepackage[style=ieee,backend=bibtex]{biblatex}
+\usepackage{amsmath}
 
 \bibliography{biblo}
 
@@ -18,19 +19,20 @@
 \begin{abstract}
 
 Determining the level of readability of documents, especially books, has lots of application in the domain of education.
-It helps to quantify and group books which may be used at a particular reading level, therefore enhancing the classroom expierence for both instructors and teachers.
+It helps to quantify and group books which may be used at a particular reading level, therefore enhancing the classroom experience for both instructors and students.
 In this paper, we ran an experiment with a variety of books obtained from Project Gutenberg \cite{gutenberg2015} organized by the project maintainers into a 2 groups; books for children, and adult fiction.
-To further enhance the analysis of this project, we also used our features to try and cluster books into clusters defined by the Flesch–Kincaid readability metrics \cite{kincaid1975derivation}.
+To further enhance the analysis of this project, we also used our features to try and cluster books into clusters defined by the Flesch-–Kincaid readability metrics \cite{kincaid1975derivation}.
 
 \end{abstract}
 
 \section{Introduction}
 
 There are several systems currently used to classify books based on reading comprehension level, for numerous applications ranging from selecting books for classrooms, to measuring an individuals literacy skills for both medical (autism, dyslexia, etc.) and educational purposes.
-In this paper, we analyze the results of utilizing several existing features to classify works in addition to a variety of novel features we created.
+In this paper, we analyze the results of utilizing several existing features to classify books in addition to a variety of novel features we created.
 The primary goal is to cluster books in groups representing the original designation of books; adult fiction and children fiction.
 
-Given an input of 3332 books (1424 children, 2021 adult, with 113 books overlapping) we achieved an F-score of 60.7\%; this is a significant improvement over the 82.2\% baseline of scoring all books as adult books, because they are the majority.
+Given an input of 3244 books (1416 children, 1938 adult, with 110 books overlapping) we achieved an $B^3$ F-score of 0.629; which is significantly less than the 0.821 base score.
+In the conclusion we discuss reasons for why this may be.
 
 \section{Previous Works}
 
@@ -43,22 +45,33 @@ Their work was motived to help organize documents by readability for adults with
 Our work is different than this in that we are using a much different data source (they were focused on news articles, where we are focused on fiction books).
 In addition, instead of focusing on adults with intellectual disabilities directly, we are instead more interested in examining books in relation to each other, with the assumption that easier to read books would be easier for both adults with ID, and developmentally delayed children.
 
+\subsection{Flesch-Kincaid Readability Calculations}
+
+To calculate the Flesch--Kincaid readability score, we apply the following function:
+
+$206.835-1.015(\dfrac{total\_words}{total\_sentences})-84.6(\dfrac{total\_sylllables}{total\_words})$ \\
+
+
+To calculate the Flesch--Kincaid readability grade, we apply the following function:
+
+$0.39(\dfrac{total\_words}{total\_sentences})+11.8(\dfrac{total\_sylllables}{total\_words})-15.59$
+
 \section{Methodology and system design}
 
 The system is written in Python, and utilizes the Natural Language ToolKit (NLTK) \cite{loper2002nltk}.
 The toolkit was trained using a portion of the Penn Treebank and the Conll2000 corpus.
-The potion used was provided by NLTK via it's distribution manager (nltk.download).
+The portion used was provided by NLTK via it's distribution manager (nltk.download).
 
 Once the corpus was downloaded and configured, we built the system in 3 stages.
 The first was retrieving the document to be analyzed; this was done ahead of time to verify the availability of the resources, and allow us to develop without worrying about going over any kind of bandwidth quota.
 However, now that development is mostly complete, this step can be skipped and documents can be downloaded directly from a Gutenberg mirror.
 
 The next step is to process the data.
-This includes using the trained POS tagger, chunker, and NE tagger on all documents, running a variety of feature function on the documents, then recording the device.
+This includes using the trained POS tagger, chunker, and NE tagger on all documents, running a variety of feature functions on the documents, then recording the results.
 Our system writes data to a CSV file as it is processed, and uses a "Book" object to cache the results of each computation between features.
-We manually reviewed the books to look for outliers that would imply a book that was not really a book.
-These included README files, audio book description files and 2 books in Chinese.
-These greatly skewed the data and were removed so that clustering would yield reasonable results.
+We manually reviewed the data to look for outliers that would imply a "book" was not really a book.
+After looking at the data, we found several bad data points, which included README files, audio book description files and 2 books in Chinese.
+These greatly skewed the data so they were removed so that clustering would yield reasonable results.
 
 And lastly, we score the results of the system.
 This process involves reading in the CSV file and training our clustering algorithmn, then clustering our test data.
@@ -126,7 +139,7 @@ As well as this list, a new list of features was created with other features tha
 	\label{table:features2}
 \end{table}
 
-From these two lists, a number of features were selected and grouped together to form 6 possible metrics for clustering the data.
+From Table \ref{table:features1} and Table \ref{table:features2}, a number of features were selected and grouped together to form 6 possible metrics for clustering the data.
 A correlation between nouns and initial results for clustering was the reason for deciding that features that used nouns should be in their own group.
 These clusters are documented in tables \ref{table:group1}-\ref{table:group6}
 
@@ -211,113 +224,90 @@ These clusters are documented in tables \ref{table:group1}-\ref{table:group6}
 Originally, we ran all combinations of features to find the best combination.
 This was time consuming, and not very telling since there were a few features which clearly were superior to others.
 To help make more sense of the data, we grouped the features (as described above) and ran all combinations of those groups.
-We attempted to cluster all books into 2 clusters, one for adult books and one for children's books.
-We ran these groups using the baseline of all books being in the adult cluster to measure our F-scores.
 This gave us much more manageable output, which is recorded in the table below.
-The "combination of features" column gives the table ID of the feature applied.
+The "combination of features" column gives the table ID of the features applied.
 
-\begin{longtable}{| c | c | c | c |} \hline
-		f-score & recall & precision & combination of features \\
+\begin{longtable}[!htbp]{| c | c | c | c | c | c |} \hline
+		f-score & recall & precision & \# in cluster 1 & \# in cluster 2 & features\\
 		\hline
-		0.8218207375 & 0.7606606607 & 0.8936757446 & 4 \\
-		0.8218207375 & 0.7606606607 & 0.8936757446 & 8 \\
-		0.8218207375 & 0.7606606607 & 0.8936757446 & 4+6 \\
-		0.8218207375 & 0.7606606607 & 0.8936757446 & 4+8 \\
-		0.8218207375 & 0.7606606607 & 0.8936757446 & 6+8 \\
-		0.8218207375 & 0.7606606607 & 0.8936757446 & 4+6+8 \\
-		0.7409439859 & 0.6349758162 & 0.8893661846 & 6 \\
-		0.607092714 & 0.5114919282 & 0.7466449541 & 3 \\
-		0.607092714 & 0.5114919282 & 0.7466449541 & 3+4 \\
-		0.607092714 & 0.5114919282 & 0.7466449541 & 3+6 \\
-		0.607092714 & 0.5114919282 & 0.7466449541 & 3+8 \\
-		0.607092714 & 0.5114919282 & 0.7466449541 & 3+4+6 \\
-		0.607092714 & 0.5114919282 & 0.7466449541 & 3+4+8 \\
-		0.607092714 & 0.5114919282 & 0.7466449541 & 3+6+8 \\
-		0.607092714 & 0.5114919282 & 0.7466449541 & 3+4+6+8 \\
-		0.6021581601 & 0.5110111293 & 0.7328788591 & 3+4+5 \\
-		0.6021581601 & 0.5110111293 & 0.7328788591 & 3+5+8 \\
-		0.6011726778 & 0.5111912539 & 0.7295988678 & 4+5 \\
-		0.6011726778 & 0.5111912539 & 0.7295988678 & 4+5+6 \\
-		0.6011726778 & 0.5111912539 & 0.7295988678 & 4+5+8 \\
-		0.6011726778 & 0.5111912539 & 0.7295988678 & 4+5+6+8 \\
-		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+5 \\
-		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+5+6 \\
-		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+4+5+6 \\
-		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+4+5+8 \\
-		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+5+6+8 \\
-		0.6005046017 & 0.5106208038 & 0.7287928993 & 3+4+5+6+8 \\
-		0.6000582208 & 0.511368158 & 0.7259677529 & 5 \\
-		0.6000582208 & 0.511368158 & 0.7259677529 & 5+6 \\
-		0.6000582208 & 0.511368158 & 0.7259677529 & 5+8 \\
-		0.6000582208 & 0.511368158 & 0.7259677529 & 5+6+8 \\
-		0.5980456604 & 0.5120879049 & 0.7186817211 & 4+7+8 \\
-		0.5980456604 & 0.5120879049 & 0.7186817211 & 3+4+5+7 \\
-		0.5980456604 & 0.5120879049 & 0.7186817211 & 3+5+6+7 \\
-		0.5980456604 & 0.5120879049 & 0.7186817211 & 4+5+6+7 \\
-		0.5980456604 & 0.5120879049 & 0.7186817211 & 5+6+7+8 \\
-		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+5+7 \\
-		0.5976007315 & 0.5124224422 & 0.7167424626 & 5+6+7 \\
-		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+5+7+8 \\
-		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+4+5+6+7 \\
-		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+4+5+7+8 \\
-		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+5+6+7+8 \\
-		0.5976007315 & 0.5124224422 & 0.7167424626 & 3+4+5+6+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 3+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 4+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 5+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 6+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 3+4+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 3+6+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 3+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 4+5+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 4+6+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 5+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 6+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 3+4+6+7 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 3+4+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 3+6+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 4+5+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 4+6+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 3+4+6+7+8 \\
-		0.5968403761 & 0.512223071 & 0.714946885 & 4+5+6+7+8 \\
+		0.629 & 0.792 & 0.521 & 411 & 2833 & 4 \\
+		0.607 & 0.753 & 0.508 & 559 & 2685 & 3 \\
+		0.607 & 0.753 & 0.508 & 559 & 2685 & 3+4 \\
+		0.607 & 0.753 & 0.508 & 559 & 2685 & 3+6 \\
+		0.607 & 0.753 & 0.508 & 2685 & 559 & 3+8 \\  
 		\hline
-	\caption{Results of clustering}
-	\label{table:features2}
+	\caption{Results of clustering: Gutenberg vs Features}
+	\label{table:guternberg_vs_features}
 \end{longtable}
 
-We then compared the best of these results to the Flesch-Kincaid score that was calculated against the baseline, again creating 2 clusters.
-This showed that the book grouping on Project Gutenberg are not exactly accurate when compared to modern metrics.
+Table \ref{table:guternberg_vs_features} shows the results of running a $B^3$ scorer on the K-means clustering of the various feature groups we generated.
+The results are not great; much less than the baseline.
 
-\begin{longtable}{| c | c | c | c | c | c |} \hline
+\begin{longtable}[!htbp]{| c | c | c | c | c | c |} \hline
 	f-score & recall & precision & \# in cluster 1 & \# in cluster 2 & combination of features \\
 	\hline
-0.821 & 0.893 & 0.760 & 2 & 3330 & flesch\_kincaid\_score \\
-0.821 & 0.893 & 0.760 & 3330 & 2 & flesch\_kincaid\_grade \\
-0.821 & 0.893 & 0.760 & 2 & 3330 & flesch\_kincaid\_score+flesch\_kincaid\_grade \\
+	0.587 & 0.705 & 0.503 & 755 & 2489 & flesch\_kincaid\_grade \\
+	0.584 & 0.701 & 0.500 & 2475 & 769 & flesch\_kincaid\_score+flesch\_kincaid\_grad \\
+	0.561 & 0.650 & 0.493 & 2300 & 944 & flesch\_kincaid\_score \\
 \hline
-	\caption{Using Kincaid as a Metric}
+	\caption{Results of clustering: Gutenberg vs Kincaid}
+	\label{table:gutenberg_vs_kincaid}
+\end{longtable}
+
+Table \ref{table:gutenberg_vs_kincaid} shows the results of attempting to cluster the books by their Kincaid readability score.
+This helps to demonstrate how inconsistent the Gutenberg clustering is with any other metric; perhaps suggesting that the Gutenberg metrics are incorrect.
+
+\begin{longtable}[!htbp]{| c | c | c | c | c | c |} \hline
+	f-score & recall & precision & \# in cluster 1 & \# in cluster 2 & combination of features \\
+	\hline
+	0.875 & 0.900 & 0.851 & 411 & 2833 & 4 \\ 
+	0.869 & 0.875 & 0.864 & 2644 & 600 & 4+6 \\
+	0.846 & 0.815 & 0.879 & 1063 & 2181 & 4+8 \\
+	0.846 & 0.815 & 0.879 & 1067 & 2177 & 4+6+8 \\
+	0.845 & 0.812 & 0.880 & 1085 & 2159 & 8 \\
+	\hline
+	\caption{Results of clustering: Features vs Kincaid}
+	\label{table:features_vs_kincaid}
+\end{longtable}
+
+\clearpage
+
+Table \ref{table:features_vs_kincaid} shows a strong correlation between the feature clustering and Kincaid readability score.
+This suggests that the two agree on the binary clustering of the books.
+
+\begin{longtable}[!htbp]{| c | c | c | c |} \hline
+	f-score & recall & precision & combination of features \\
+	\hline
+	0.497 & 0.595 & 0.427 & 6+8 \\
+	0.483 & 0.587 & 0.410 & 4+6+8 \\
+	0.481 & 0.574 & 0.414 & 8 \\
+	0.478 & 0.598 & 0.398 & 4+8 \\
+	0.466 & 0.594 & 0.383 & 6 \\
+	\hline
+	\caption{Results of clustering: Kincaid Grades vs Features}
 	\label{table:kincaid_clustering}
 \end{longtable}
 
-To get a better understanding our how our metrics were performing, we instead calculated our score using the Flesch-Kincaid scores as the baseline.
-This meant clustering using the feature groups we generated to create 2 clusters, then comparing them against the clusters generated using the Flesch-Kincaid scores.
-
+Table \ref{table:kincaid_clustering} shows a discrepancy in this theory; when attempting to cluster the books into the 26 grade level clusters assigned by Kincaid, we have a much smaller correlation.
 
 
 \section{Conclusion}
 
-Our best results are barely the same as the baseline; this can tell us a few interesting things.
-Either our features are totally useless (which seems unlikely, since the Kincaid readability tests have been used for years), or our corpus is not divided well or is difficult to assign features to.
-Given that Project Gutenberg only houses books who's copyright has expired, this leads to the interesting proposition that language has shifted so much our POS tag failed to achieve good results; however, we can't test this (at least not easily).
+Our best results are significantly below the baseline; this can tell us a few interesting things.
+Either our features are totally useless (which seems unlikely, since the Kincaid readability test has been used for years), or our corpus is not divided well or is difficult to assign features to.
+Given that Project Gutenberg only houses books who's copyright has expired, this leads to the interesting proposition that language has shifted so much our POS tagger failed to achieve good results; however, we can't test this (at least not easily).
 We have no annotated corpus' to compare our results with, and therefore no way to verify the accuracy of the POS tagger.
-The Flesch-Kincaid scores were also developed in 1975, which means that the shift in language could lead to inaccurate results using these scores as well.
 
 As for the possibility that the gold standard we are using, bookshelves as defined by the Project Gutenberg curators, being not properly categorized raises another point of failure.
-In figures 1 and 2, we have 2 sample books from the Project Gutenberg collection.
+In Figures 1 and 2, we have 2 sample books from the Project Gutenberg collection.
 When presented during our proposal, it was difficult for the class to distinguish them with ease.
 This suggests that the categorization of these books may not be obvious or consistent.
+
+To further support this theory, we can see that the Flesch-Kincaid score does not line up well with the Project Gutenberg clustering.
+However, several of our features lines up quite well with the Flesch-Kincaid score (see Table \ref{table:features_vs_kincaid}), which suggests that there may be a proper clustering of the books that Gutenberg did not see.
+
+Given our results, we believe there may be more work to be done in this area.
+However, before the Gutenberg dataset can be fully utilized, it needs to be cleaned and resorted in a way that may more conform with current perceptions of reading difficulties.
 
 \begin{figure}
 	\begin{quotation}
@@ -328,7 +318,7 @@ This suggests that the categorization of these books may not be obvious or consi
 		covered up with newspapers in the other, while a parasol was tucked under her arm.  The conductor helped her off the car and then the engineer started his train again, so that it puffed and groaned and moved slowly away up the track.  The reason he was so late was because all through the night there were times when the solid earth shook and trembled under him, and the engineer was afraid that at any moment the rails might spread apart and an accident happen to his passengers.  So he moved the cars slowly and with caution.
 	\end{quotation}
 	\label{figure:book1}
-	\caption{Dorothy and the Wizard in Oz, L. Frank Baum; Book from Adult's Fiction Bookshelf}
+	\caption{Dorothy and the Wizard in Oz, L. Frank Baum}
 \end{figure}
 
 \begin{figure}
@@ -337,7 +327,7 @@ This suggests that the categorization of these books may not be obvious or consi
 		While his father, mother, and sister Doris had been absent in New York for a week-end visit and Havens, the chauffeur, was ill at the hospital, the boy had taken the big six-cylinder car from the garage without anybody's permission and carried a crowd of his friends to Torrington to a football game. And that was not the worst of it, either. At the foot of the long hill leading into the village the mighty leviathan so unceremoniously borrowed had come to a halt, refusing to move another inch, and Stephen now sat helplessly in it, awaiting theaid his comrades had promised to send back from the town.
 	\end{quotation}
 	\label{figure:book2}
-	\caption{Steve and the Steam Engine, Sara Ware Bassett; Book from Children's Fiction Bookshelf}
+	\caption{Steve and the Steam Engine, Sara Ware Bassett}
 \end{figure}
 
 \printbibliography
